@@ -1,14 +1,14 @@
 #include "monty.h"
 
 /**
- * create_node - creates a new node for the doubly linked list 
+ * create_node - creates a new node for the doubly linked list
  * @data: store in the newly created node.
  *
- * return: new_node
+ * Return: new_node
  */
-stack_t* create_node(int data)
+stack_t *create_node(int data)
 {
-	stack_t* new_node = (stack_t*)malloc(sizeof(stack_t));
+	stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
 
 	if (new_node == NULL)
 	{
@@ -26,14 +26,16 @@ stack_t* create_node(int data)
 /**
  * push - add node to the stack
  * @head: stack head
- * @line_number: identify the specific location in the code where an issue
- * 		or an action is taking place.
  * @data: store in the newly created node.
+ * @line_number: identify the specific location in the code where an issue
+ *               or an action is taking place.
  *
  * Return: Void
 */
-void push(stack_t** head, int data, unsigned int line_number)
+void push(stack_t **head, int data, unsigned int line_number)
 {
+	stack_t *new_node;
+
 	if (head == NULL)
 	{
 		fprintf(stderr, "Invalid head pointer\n");
@@ -45,15 +47,24 @@ void push(stack_t** head, int data, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
+	new_node = create_node(data);
+
+	if (*head != NULL)
+	{
+		(*head)->prev = new_node;
+	}
+
+	new_node->next = *head;
+	*head = new_node;
 }
 
 /**
  * pall - prints the stack
  * @head: stack head
- * 
+ *
  * Return: void
 */
-void pall(stack_t* head)
+void pall(stack_t *head)
 {
 	while (head != NULL)
 	{
@@ -61,4 +72,3 @@ void pall(stack_t* head)
 		head = head->next;
 	}
 }
-
