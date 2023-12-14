@@ -42,6 +42,6 @@ char *execute_opcode(stack_t **stack, char **opcode, int line, FILE *stream)
 	if (**newprog == '#')
 		return ("good");
 
-		unknown_inst_exit(stack, *opcode, line, stream);
+	unknown_inst_exit(stack, *opcode, line, stream);
 	return (*opcode);
 }
