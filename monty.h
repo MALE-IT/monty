@@ -9,6 +9,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <limits.h>
+#include <errno.h>
+#include <limits.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,8 +43,7 @@ typedef struct instruction_s
 } instruction_t;
 
 stack_t* create_node(int data);
-void push(stack_t** head, int data, unsigned int line_number);
 void pall(stack_t* head);
-
+void push(stack_t **head, char *str, unsigned int line_number);
 #endif
 

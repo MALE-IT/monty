@@ -32,16 +32,17 @@ stack_t *create_node(int data)
  *
  * Return: Void
 */
-void push(stack_t **head, int data, unsigned int line_number)
+void push(stack_t **head, char *str, unsigned int line_number)
 {
 	stack_t *new_node;
+	int data = atoi(str);
 
 	if (head == NULL)
 	{
 		fprintf(stderr, "Invalid head pointer\n");
 		exit(EXIT_FAILURE);
 	}
-	if (data < INT_MIN || data > INT_MAX)
+	if ((data == 0 && str[0] != '0') || (data == INT_MIN && errno == ERANGE))
 	{
 		fprintf(stderr, "L%u: Value out of integer range\n", line_number);
 		exit(EXIT_FAILURE);
